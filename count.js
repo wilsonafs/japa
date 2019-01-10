@@ -3,12 +3,19 @@ const getParam = name => {
   return url.searchParams.get(name)
 }
 
+const paraEl = document.getElementById('para')
+const para = getParam('para')
+if (para) paraEl.innerText = para
+
+const quando = getParam('quando')
+console.log('quando', quando)
+
 const second = 1000,
       minute = second * 60,
       hour = minute * 60,
       day = hour * 24;
 
-const countDown = new Date('Jan 10, 2019 12:00:00').getTime()
+const countDown = new Date(quando || 'Jan 10, 2019 12:00:00').getTime()
 
 setInterval(function() {
 
@@ -27,8 +34,3 @@ setInterval(function() {
   //}
 
 }, second)
-
-const paraEl = document.getElementById('para')
-const para = getParam('para')
-if (para) paraEl.innerText = para
-
