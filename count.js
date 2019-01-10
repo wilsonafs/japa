@@ -8,7 +8,6 @@ const para = getParam('para')
 if (para) paraEl.innerText = para
 
 const quando = getParam('quando')
-console.log('quando', quando)
 
 const second = 1000,
       minute = second * 60,
