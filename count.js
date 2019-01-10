@@ -3,6 +3,14 @@ const getParam = name => {
   return url.searchParams.get(name)
 }
 
+const showFinishedMsg = () => {
+  const idsToRemove = ['head', 'counter', 'para']
+  idsToRemove.forEach(id => document.getElementById(id).classList.add('hide'))
+
+  const idsToReveal = ['finished']
+  idsToReveal.forEach(id => document.getElementById(id).classList.remove('hide'))
+}
+
 const paraEl = document.getElementById('para')
 const para = getParam('para')
 if (para) paraEl.innerText = para
@@ -16,7 +24,7 @@ const second = 1000,
 
 const countDown = new Date(quando || 'Jan 10, 2019 12:00:00').getTime()
 
-setInterval(function() {
+const x = setInterval(function() {
 
   const now = new Date().getTime(),
     distance = countDown - now;
@@ -27,9 +35,9 @@ setInterval(function() {
   document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
 
   //do something later when date is reached
-  //if (distance < 0) {
-  //  clearInterval(x);
-  //  'Hora do Japa!;
-  //}
+  if (distance < 0) {
+    clearInterval(x);
+    showFinishedMsg();
+  }
 
 }, second)
